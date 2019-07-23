@@ -36,6 +36,7 @@ const Register = (props, { isSubmitting }) => {
               console.log("test", res);
               setValue(res.data.token);
                if(res.data.message == "Username is already taken"){
+                localStorage.removeItem("token")
                 alert("Username is already taken, please make another.")
                 props.history.push("/register");
 
