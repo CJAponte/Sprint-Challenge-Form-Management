@@ -13,7 +13,6 @@ const Restricted = () => {
     axiosWithAuth()
       .get("/restricted/data")
       .then(res => {
-        console.log(res);
         setRestricted(res.data);
       })
       .catch(err => console.log(err));

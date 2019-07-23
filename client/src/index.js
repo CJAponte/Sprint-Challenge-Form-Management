@@ -53,7 +53,7 @@ const App = () => {
           active={activeItem === "register-user"}
           onClick={handleItemClick}
         >
-          Register a New User
+          Register
         </Menu.Item>
 
         <Menu.Item

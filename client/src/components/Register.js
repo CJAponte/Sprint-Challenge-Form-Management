@@ -17,7 +17,6 @@ const RegisterSchema = Yup.object().shape({
 
 const Register = (props, { isSubmitting }) => {
   const [storedValue, setValue] = useLocalStorage("token");
-
   return (
     <div style={{ width: "50vw", margin: "0 auto" }}>
       <h1 style={{ textAlign: "center" }}>Register New User</h1>
@@ -34,11 +33,17 @@ const Register = (props, { isSubmitting }) => {
           return axiosWithAuth()
             .post(url, values)
             .then(res => {
-              console.log(res);
+              console.log("test", res);
               setValue(res.data.token);
-              props.history.push("/restricted");
+               if(res.data.message == "Username is already taken"){
+                alert("Username is already taken, please make another.")
+                props.history.push("/register");
+
+              }else if(res.data.message == "User created succesfully"){
+                props.history.push("/restricted");
+            }
             })
-            .catch(err => console.log(err));
+            .catch(err => alert(err));
         }}
         render={({ touched, errors, handleSubmit, handleChange }) => {
           return (
